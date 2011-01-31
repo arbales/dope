@@ -1,0 +1,32 @@
+%html
+  %head
+    %title is it dope?                 
+    - if ENV["RACK_ENV"] == 'production'
+      =stylesheet_link_tag 'deploy.css'
+      =javascript_include_tag 'deploy.js'
+    - else
+      =stylesheet_link_tag 'reset', 'grid', 'style', "http://fonts.googleapis.com/css?family=Reenie+Beanie"
+      = javascript_include_tag 'prototype.s2.min','lowpro','/cafe/app'
+    - if @js  
+      - @js.each do |js|
+        :javascript
+          #{js}
+%body
+  #overlay{:style => "display:none"}
+  #preview  
+  %audio#song{src: '/cantina.wav', preload: true}   
+  .primary{:style => "display:none"}
+    .spinner.small
+    Move along, move along&hellip;
+  #flash{:style => "display:none;"}
+    %p   
+  .container_12#container 
+    %header
+      .grid_12
+        .nav>
+          %ul>
+            - if session[:username]
+              %li= link_to "Leave", '/leave'
+    .clear
+    =yield
+    .clear
