@@ -82,7 +82,12 @@ class Dope
       else
         error "Failed to save comment."
       end
-    end       
+    end  
+    
+    get '/post/:id' do
+      @post = Post.find(params[:id])
+      haml :post
+    end     
     
     get '/login' do
       haml :login

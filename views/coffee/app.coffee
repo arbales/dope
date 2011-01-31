@@ -3,13 +3,12 @@ DocumentCache = {
   post:0
 }
 Event.addBehavior {
-  ".no.post:click": ->
-    if this.hasClassName 'in'
-      this.insert({after: this.next().clone(true)});
-    else
-      this.addClassName "out"
-    #else
-    #  this.addClassName "left"  
+  ".post:click": ->
+      window.location.href = "/post/#{this.readAttribute('data-id')}"
+  "#overlay:click": ->
+    this.fade();
+    $$('.popup')[0].hide();
+    
   "input.delete:click": ->
     this.up('.deletable').fade();
     new Ajax.Request(this.readAttribute('data-target'), {
@@ -25,7 +24,9 @@ Event.addBehavior {
     this.addClassName "on"  
     #DocumentCache.postLeft -= 500
     #$$('.posts')[0].morph("margin-left:#{DocumentCache.postLeft}px")
-#    DocumentCache.post -= 1    
+#    DocumentCache.post -= 1        
+  "input[type=button]:click": ->
+    this.removeClassName "on"
   ".post form.commenter:submit": (event)->
     el = this
     Event.stop(event)
@@ -51,7 +52,7 @@ Event.addBehavior {
       ), 5000
        
   ".new-upload:click": ->
-    $('overlay').setStyle('display:block').addClassName("appear")
+    $('overlay').appear()
     $$('.popup')[0].show() 
   }
     

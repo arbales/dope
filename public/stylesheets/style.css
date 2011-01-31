@@ -89,7 +89,8 @@ p.centered {
   margin:0px; 
   overflow:hidden;
   vertical-align:top;
-  margin-right:10px;    
+  margin-right:2ex;    
+  margin-bottom:2ex;
 }                
 .post img {
   max-width:100%; 
@@ -259,7 +260,7 @@ input[type=button]:active {
   position:fixed;
   top:0px;
   left:0px;
-  opacity:0.1;   
+  opacity:0.85;   
   background-color:#000;
   display:block;
   z-index:900;

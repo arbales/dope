@@ -35,7 +35,9 @@ class Post
   field :username
   field :channel
   field :text
-  field :image     
+  field :image   
+  field :yeps
+  field :nopes  
 
   references_many :comments                     
   

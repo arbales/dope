@@ -1,0 +1,25 @@
+.posts    
+  .post.deletable
+    .image               
+      = image_tag @post.image.url
+    .meta
+      = button_tag "Yep!"
+      = button_tag "Nope." 
+      = button_tag "Delete", :'data-target' => "/post/#{@post.id}", :class => 'delete'
+      
+      .author
+        = link_to @post.username, "/user/#{@post.username}"
+    .comments
+      %h3 Comments
+      - @post.comments.each do |comment|
+        %p.deletable
+          %span.body
+            = comment.body rescue ""
+          = button_tag "Delete", :'data-target' => "/comment/#{comment.id}", :class => 'delete'
+      %form.commenter{:action => "/post/#{@post.id}/comments", :method => 'post'}
+        = text_field_tag :body
+        =# submit_tag "Comment"
+
+.clear.vspace      
+.grid_12
+  = button_tag "Upload", :class => 'new-upload'
