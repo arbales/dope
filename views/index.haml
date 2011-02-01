@@ -4,11 +4,11 @@
       .image               
         = image_tag post.image.url
       .meta     
-        #{post.yeps} yeps. #{post.nopes} nopes.
+        = button_tag "yeps #{post.yeps.to_i || 0}", :class => "yeps"
+        = button_tag "nopes #{post.nopes.to_i || 0}", :class => "nopes"    
+        %p.inline
+          = link_to "comments", "/post/#{post.id}"
         .author
           = link_to post.username, "/user/#{post.username}"
 
 .clear.vspace      
-.grid_12
-  = button_tag "Upload", :class => 'new-upload'
-  

@@ -20,6 +20,7 @@ header {
 }          
 
 h1 {     
+  cursor:pointer;
   font-family: "Helvetica Neue";
   text-align:center;
   font-size:84px;  
@@ -56,6 +57,17 @@ p {
   text-shadow:rgba(255,255,255, .5) 0px 1px 1px;
   color:#666;
 }    
+  p.inline {
+    display:inline-block;
+  }                 
+  
+  .meta p.inline {        
+    vertical-align:bottom;  
+    text-decoration:underline;
+    color:rgba(255,255,255,.65);
+    padding:1ex 2ex;
+    text-shadow:#000 1px 1px 8px;
+  }
 
 a {
   color:#0092D3; 
@@ -66,9 +78,9 @@ a {
 
 .nav ul {
   list-style-type:none;
+  text-align:right;
 }                     
 .nav ul li { 
-  float:right;
   display:inline-block;
   list-style-type:none;
   }
@@ -82,7 +94,8 @@ p.centered {
 .posts {
 }   
 
-.post {
+.post {  
+  cursor:pointer;
   width:460px;
   height:360px;
   display:inline-block;
@@ -103,9 +116,14 @@ p.centered {
   opacity:0;
 }      
 
-.post.in { 
+.post.in, .card-in { 
   -webkit-animation-name: card-in;
    -webkit-animation-duration: .75s;
+  opacity:1.0;
+}  
+.post-card-in {
+  -webkit-animation-name: post-card-in;
+   -webkit-animation-duration: 1.75s;
   opacity:1.0;
 }
 
@@ -124,9 +142,16 @@ p.centered {
 .post .comments {
   color:rgba(0,0,0,.75);
   font-size:12px;
-/*  margin:2ex;          */
   margin-top:1ex;
 }                     
+
+.post .inline a {
+  color:rgba(255,255,255,.75);
+  text-shadow:rgba(0,0,0,.75) 0px 0px 5px;
+  font-size:12px;
+  text-decoration:underline;
+  margin:auto 2ex;
+}
 
 .post .comments p {
   padding:2ex;
@@ -150,11 +175,15 @@ p input[type=button].delete {
 }
 
 .post .meta { 
+  font-size:12px;
+  min-height:32px;       
+  vertical-align:middle;
+  color:#fff;
   border-top:1px solid rgba(0,0,0,.3);
   border-bottom:1px solid #888;
   background-color:rgba(0,0,0,.55);
   background:#eee -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,.55)), color-stop(.5, rgba(0,0,0,.4)), color-stop(.501, rgba(0,0,0,.45)), to(rgba(0,0,0,.35))););
-  
+  line-height:2ex;
   padding:1ex 1ex;
 }     
 
@@ -167,8 +196,10 @@ p input[type=button].delete {
   text-shadow:rgba(0,0,0,.75) 0px 0px 5px;
   font-size:12px;
   position:relative;
-  top:8px;
-  text-decoration:none;
+  top:9px;
+  display:inline-block;
+  text-decoration:underline;
+  margin:auto 2ex;
 } 
 
 input[type=text] {
@@ -178,7 +209,7 @@ input[type=text] {
   width:100%;
 }
 
-input[type=button], input[type=submit] {      
+input[type=button], input[type=submit], a.button {      
   cursor:pointer;
   font-family: "Helvetica Neue";
   font-size:13px;
@@ -355,5 +386,17 @@ input[type=button]:active {
  100% {
    opacity: 1.0;
    -webkit-transform: scale(1.0);
+ }
+}  
+
+@-webkit-keyframes post-card-in {
+ 0% {      
+   opacity: 0;
+ }
+ 50% {
+   opacity: 0;
+ }
+ 100% {
+   opacity: 1.0;
  }
 }

@@ -14,7 +14,7 @@
 %body
   #overlay{style:'display:none'}
   #preview  
-  %audio#song{src: '/cantina.wav', preload: true}   
+  %audio#song{src: '/cantina-compressed.wav', preload: true}   
   .popup{style:'display:none'}
     .inner
       = partial :post
@@ -29,7 +29,9 @@
         .nav>
           %ul>
             - if session[:username]
-              %li= link_to "Leave", '/leave'
+              %li= button_tag "Upload", :class => 'new-upload'
+              %li= link_to "Leave", '/leave', :class => 'button'
+              
       %h1 is it <span class='dope'>dope?</span> 
     .clear
     =yield

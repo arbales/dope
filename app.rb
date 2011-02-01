@@ -87,10 +87,30 @@ class Dope
     get '/post/:id' do
       @post = Post.find(params[:id])
       haml :post
-    end     
+    end 
+    
+    put '/post/:id/yeps' do
+      p = Post.find params[:id]
+      num = p.yeps.to_i
+      num += 1
+      p.yeps = num
+      p.save                   
+      puts num
+      num.to_s
+    end    
+    
+    put '/post/:id/nopes' do
+      p = Post.find params[:id]
+      num = p.nopes.to_i
+      num += 1
+      p.nopes = num
+      p.save                   
+      puts num
+      num.to_s
+    end
     
     get '/login' do
-      haml :login
+      haml :login, :layout => 'layouts/alt'.to_sym
     end
     
     post '/login' do

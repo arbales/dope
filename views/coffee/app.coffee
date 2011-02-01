@@ -3,8 +3,8 @@ DocumentCache = {
   post:0
 }
 Event.addBehavior {
-  ".post:click": ->
-      window.location.href = "/post/#{this.readAttribute('data-id')}"
+  ".post .image:click": ->
+      window.location.href = "/post/#{this.up('.post').readAttribute('data-id')}"
   "#overlay:click": ->
     this.fade();
     $$('.popup')[0].hide();
@@ -14,12 +14,24 @@ Event.addBehavior {
     new Ajax.Request(this.readAttribute('data-target'), {
       method: 'delete'
     })
-  "h1:click": ->
-    #$$('.out')[0].removeClassName('out').addClassName('in')
-    $('overlay').show() 
-    $$('.primary')[0].show()
-    $('song').play()
-    
+  "h1:click": (event)->
+    window.location.href = "/" 
+  "input.yeps:click": ->
+    new Ajax.Request("post/#{this.up('.post').readAttribute('data-id')}/yeps", {
+      method: 'put' 
+      onSuccess: (transport) =>   
+        console.log transport.responseText
+        this.value = "yeps #{transport.responseText}"
+    })             
+    Event.stop event  
+  "input.nopes:click": ->
+    new Ajax.Request("post/#{this.up('.post').readAttribute('data-id')}/nopes", {
+      method: 'put' 
+      onSuccess: (transport) =>   
+        console.log transport.responseText
+        this.value = "nopes #{transport.responseText}"
+    })             
+    Event.stop event 
   "input[type=button]:click": ->
     this.addClassName "on"  
     #DocumentCache.postLeft -= 500
