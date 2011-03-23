@@ -72,4 +72,4 @@ document.observe "dom:loaded", ->
   if $('movealong')
     overlay.show()
     
-    # $('song').play()
+    $('song').play()
